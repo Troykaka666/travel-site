@@ -6,11 +6,13 @@ var gulp = require("gulp"),
   // nested = require("postcss-nested"),
   // cssImport = require("postcss-import"),
   // Import scss
-  prefix = require("gulp-autoprefixer"),
-  sass = require("gulp-sass"),
-  sourcemaps = require("gulp-sourcemaps"),
-  cssmin = require("gulp-cssnano"),
-  rename = require("gulp-rename");
+  browserSync = require("browser-sync").create();
+//open the browser for the webpage preview
+(prefix = require("gulp-autoprefixer")),
+  (sass = require("gulp-sass")),
+  (sourcemaps = require("gulp-sourcemaps")),
+  (cssmin = require("gulp-cssnano")),
+  (rename = require("gulp-rename"));
 
 var prefixerOptions = {
   browsers: ["last 2 versions"]
@@ -27,6 +29,10 @@ gulp.task("style", function() {
       )
     )
     .pipe(prefix(prefixerOptions))
+    .on("error", function(errorInfo) {
+      console.log(errorInfo.toString());
+      this.emit("end");
+    })
     .pipe(rename("styles.css"))
     .pipe(gulp.dest("./app/temp/"))
     .pipe(cssmin())
@@ -35,5 +41,19 @@ gulp.task("style", function() {
 });
 
 gulp.task("watch", function() {
+  browserSync.init({
+    server: {
+      baseDir: "app"
+    }
+  });
+
+  watch(".add/app/index.html", function() {
+    browserSync.reload();
+  });
+
   gulp.watch("./app/assets/**/*.scss", ["style"]);
+});
+
+gulp.task("cssInject", function() {
+  return gulp.src("./app/temp/styles/styles/css").pipe(browserSync.stream());
 });
