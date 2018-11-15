@@ -42,6 +42,7 @@ gulp.task("style", function() {
 
 gulp.task("watch", function() {
   browserSync.init({
+    notify: false,
     server: {
       baseDir: "app"
     }
@@ -51,9 +52,12 @@ gulp.task("watch", function() {
     browserSync.reload();
   });
 
+  watch("./app/assets/styles/**/*/.css", function() {
+    gulp.setMaxListeners("cssInject");
+  });
   gulp.watch("./app/assets/**/*.scss", ["style"]);
 });
 
-gulp.task("cssInject", function() {
-  return gulp.src("./app/temp/styles/styles/css").pipe(browserSync.stream());
+gulp.task("cssInject", ["styles"], function() {
+  return gulp.src("./app/temp/styles.css").pipe(browserSync.stream());
 });

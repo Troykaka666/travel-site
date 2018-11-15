@@ -2,6 +2,10 @@
 
 @import "base/_variables.scss";
 @import "base/global.scss";
+@import "base/_mixins.scss";
 
 @import "modules/_large-hero.scss";
 @import "modules/_btn.scss";
+@import "modules/_wrapper.scss";
+@import "modules/_page-section.scss";
+@import "modules/_headline.scss";
