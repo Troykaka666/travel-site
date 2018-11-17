@@ -5,12 +5,16 @@
     display: block;
   }
   &__text-content {
+    padding-top: 88px;
     position: absolute;
     top: 50%;
     left: 0;
     transform: translateY(-50%);
     width: 100%;
     text-align: center;
+    @include atMedium {
+      padding-top: 60px;
+    }
   }
 
   &__title {
