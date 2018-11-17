@@ -12,11 +12,34 @@ var gulp = require("gulp"),
   (sass = require("gulp-sass")),
   (sourcemaps = require("gulp-sourcemaps")),
   (cssmin = require("gulp-cssnano")),
+  (rename = require("gulp-rename")),
+  (svgSprite = require("gulp-svg-sprite")),
   (rename = require("gulp-rename"));
 
 var prefixerOptions = {
   browsers: ["last 2 versions"]
 };
+
+//config to set up a path to save the created svg file
+var config = {
+  mode: {
+    css: {
+      render: {
+        css: {
+          template: "./app/temp/sprite.css"
+        }
+      }
+    }
+  }
+};
+
+//to combine all icon into one svg image
+gulp.task("createSprite", function() {
+  return gulp
+    .src("app/assets/images/icons/**/*.svg")
+    .pipe(svgSprite(config))
+    .pipe(gulp.dest("app/temp/sprite/"));
+});
 
 gulp.task("style", function() {
   return gulp
