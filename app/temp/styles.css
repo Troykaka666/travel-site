@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */
 /* Document
    ========================================================================== */
@@ -648,7 +649,7 @@ a {
     .site-header {
       background-color: rgba(47, 85, 114, 0.3); } }
   .site-header__btn-container {
-    float: right; }
+    float: right；; }
   .site-header__logo {
     position: absolute;
     top: 0;
