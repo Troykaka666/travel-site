@@ -6,6 +6,7 @@ var gulp = require("gulp"),
   // nested = require("postcss-nested"),
   // cssImport = require("postcss-import"),
   // Import scss
+  webpack = require("webpack"),
   browserSync = require("browser-sync").create();
 //open the browser for the webpage preview
 (prefix = require("gulp-autoprefixer")),
@@ -75,12 +76,33 @@ gulp.task("watch", function() {
     browserSync.reload();
   });
 
-  watch("./app/assets/styles/**/*/.css", function() {
+  watch("./app/assets/styles/**/*.css", function() {
     gulp.setMaxListeners("cssInject");
   });
+
+  watch("./app/assets/scripts/**/*.js", function() {
+    gulp.start("scriptsRefresh");
+  });
+
   gulp.watch("./app/assets/**/*.scss", ["style"]);
 });
 
+//new gulp task to run webpack automatically
+gulp.task("scripts", function(callback) {
+  webpack(require("./webpack.config.js"), function(err, stats) {
+    if (err) {
+      console.log(err.toString());
+    }
+    console.log(stats.toString());
+    callback();
+  });
+});
+
+//only will excute after the task in [] is completed
 gulp.task("cssInject", ["styles"], function() {
   return gulp.src("./app/temp/styles.css").pipe(browserSync.stream());
+});
+
+gulp.task("scriptsRefresh", ["scripts"], function() {
+  browserSync.reload();
 });
