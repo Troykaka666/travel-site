@@ -40,6 +40,9 @@
     @include atMedium {
       padding: 12px 0;
       background-color: transparent;
+      &.active{
+        color: #fabb69;
+      }
     }
   }
 }
