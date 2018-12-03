@@ -13,7 +13,7 @@
 
 // var jane = new Adult("Jane Smith", "yellow");
 // jane.greet();
-// jane.payTxes();
+// jane.payTxes();.
 import $ from "jquery";
 import MobileMenu from "./modules/MobileMenu";
 import RevealOnScroll from "./modules/RevealOnScroll";
