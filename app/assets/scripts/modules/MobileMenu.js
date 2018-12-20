@@ -1,4 +1,4 @@
-import $ from "jquery";
+import $ from 'jquery';
 
 class MobileMenu {
   constructor() {
@@ -13,9 +13,9 @@ class MobileMenu {
   }
 
   toggleTheMenu() {
-    this.siteHeader.toggleClass("site-header--expanded");
-    this.menuContent.toggleClass("site-header__menu-content--visible");
-    this.menuIcon.toggleClass("site-header__menu-icon--closex");
+    this.menuContent.toggleClass("site-header__menu-content--is-visible");
+    this.siteHeader.toggleClass("site-header--is-expanded");
+    this.menuIcon.toggleClass("site-header__menu-icon--close-x");
   }
 }
 
