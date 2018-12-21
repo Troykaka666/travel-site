@@ -1,9 +1,0 @@
-/*Dont edit modules/_sprite.scss directyly.*/
-{{#shapes}}
-.icon--{{base}}{
-  width: {{width.outer}}px;
-  height: {{height.outer}}px;
-  background-image: url('/temp/sprite/css/{{{sprite}}}');
-  background-position: {{position.relative.xy}};
-}
-{{/shapes}}
